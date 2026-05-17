@@ -1,5 +1,60 @@
 # QMK Userspace
 
+## Layout
+
+This userspace currently contains a personal Cantor keymap based on Mark Stosberg's 3x5+1 layout, with local changes for macOS, programming, media controls, Mouseless, and Russian typing.
+
+The base layer keeps letters on the main 3x5 columns, with the extra outer keys used for Tab, one-shot Option, one-shot Shift, Delete, one-shot AltGr, and one-shot Func. The thumb clusters provide one-shot Ctrl, Cmd/Enter, Lower/Tab, Raise/Backspace, Space, and one-shot Shift.
+
+Layer highlights:
+
+- Lower: numbers, shifted number symbols, brackets, braces, punctuation, and colon.
+- Raise: navigation, editing keys, brightness controls, media controls, volume, and Mouseless trigger (`Raise+I` toggles mouseless.click).
+- Func: function keys, Caps Lock, copy/paste-style shortcuts, RGB toggle, and macOS lock screen.
+- Mouse: mouse movement/buttons are defined, but there is currently no base-layer keybinding to enter this layer.
+- Russian: a Unicode-based Russian typing layer with a custom physical layout.
+
+Russian layer layout:
+
+```text
+й ц у к е н    г ш щ з х ъ
+Alt ф ы в а п  р о л д ж э
+Shift я ч с м и  т ь б ю , '
+```
+
+Shifted Russian behavior:
+
+- Russian letters emit uppercase variants when Shift is active.
+- `,` emits `.` when shifted.
+- `'` emits `"` when shifted.
+
+Russian mode is toggled in QMK with `Cmd+Space`. This shortcut is consumed by the firmware and does not switch the macOS input source.
+
+For the Russian layer to work on macOS, enable and select the `Unicode Hex Input` input source:
+
+1. Open System Settings.
+1. Go to Keyboard.
+1. Under Text Input, click Edit.
+1. Add `Unicode Hex Input` from Other.
+1. Keep `Unicode Hex Input` selected while using the keyboard.
+
+The firmware emits Russian characters using QMK Unicode Map. If macOS is using a normal input source instead of `Unicode Hex Input`, Russian characters will appear as Option-symbol sequences such as `º¢£...`.
+
+Build and flash:
+
+```sh
+make
+make flash
+```
+
+`make flash` runs:
+
+```sh
+dfu-util -a 0 -s 0x08000000:leave -D cantor_alexeypegov.bin
+```
+
+## QMK Userspace Template
+
 This is a template repository which allows for an external set of QMK keymaps to be defined and compiled. This is useful for users who want to maintain their own keymaps without having to fork the [main QMK repository](https://github.com/qmk/qmk_firmware). You must still fork the main QMK repository if writing firmware for a *new* keyboard.
 
 ## Howto configure your build targets
