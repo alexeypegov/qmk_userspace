@@ -47,6 +47,81 @@ combo_t key_combos[COMBO_COUNT] = {
 #define _FUNC   3
 #define _MOUSE  4
 #define _SHORTCUT  5
+#define _RU 6
+
+enum unicode_names {
+    RU_JE, RU_JE_UP,
+    RU_TSE, RU_TSE_UP,
+    RU_U, RU_U_UP,
+    RU_KA, RU_KA_UP,
+    RU_IE, RU_IE_UP,
+    RU_EN, RU_EN_UP,
+    RU_GHE, RU_GHE_UP,
+    RU_SHA, RU_SHA_UP,
+    RU_SHCHA, RU_SHCHA_UP,
+    RU_ZE, RU_ZE_UP,
+    RU_HA, RU_HA_UP,
+    RU_HARD, RU_HARD_UP,
+    RU_EF, RU_EF_UP,
+    RU_YERU, RU_YERU_UP,
+    RU_VE, RU_VE_UP,
+    RU_A, RU_A_UP,
+    RU_PE, RU_PE_UP,
+    RU_ER, RU_ER_UP,
+    RU_O, RU_O_UP,
+    RU_EL, RU_EL_UP,
+    RU_DE, RU_DE_UP,
+    RU_ZHE, RU_ZHE_UP,
+    RU_E, RU_E_UP,
+    RU_YA, RU_YA_UP,
+    RU_CHE, RU_CHE_UP,
+    RU_ES, RU_ES_UP,
+    RU_EM, RU_EM_UP,
+    RU_I, RU_I_UP,
+    RU_TE, RU_TE_UP,
+    RU_SOFT, RU_SOFT_UP,
+    RU_BE, RU_BE_UP,
+    RU_YU, RU_YU_UP,
+    RU_COMM, RU_DOT,
+    RU_QUOT, RU_DQUO,
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [RU_JE] = 0x0439, [RU_JE_UP] = 0x0419,
+    [RU_TSE] = 0x0446, [RU_TSE_UP] = 0x0426,
+    [RU_U] = 0x0443, [RU_U_UP] = 0x0423,
+    [RU_KA] = 0x043A, [RU_KA_UP] = 0x041A,
+    [RU_IE] = 0x0435, [RU_IE_UP] = 0x0415,
+    [RU_EN] = 0x043D, [RU_EN_UP] = 0x041D,
+    [RU_GHE] = 0x0433, [RU_GHE_UP] = 0x0413,
+    [RU_SHA] = 0x0448, [RU_SHA_UP] = 0x0428,
+    [RU_SHCHA] = 0x0449, [RU_SHCHA_UP] = 0x0429,
+    [RU_ZE] = 0x0437, [RU_ZE_UP] = 0x0417,
+    [RU_HA] = 0x0445, [RU_HA_UP] = 0x0425,
+    [RU_HARD] = 0x044A, [RU_HARD_UP] = 0x042A,
+    [RU_EF] = 0x0444, [RU_EF_UP] = 0x0424,
+    [RU_YERU] = 0x044B, [RU_YERU_UP] = 0x042B,
+    [RU_VE] = 0x0432, [RU_VE_UP] = 0x0412,
+    [RU_A] = 0x0430, [RU_A_UP] = 0x0410,
+    [RU_PE] = 0x043F, [RU_PE_UP] = 0x041F,
+    [RU_ER] = 0x0440, [RU_ER_UP] = 0x0420,
+    [RU_O] = 0x043E, [RU_O_UP] = 0x041E,
+    [RU_EL] = 0x043B, [RU_EL_UP] = 0x041B,
+    [RU_DE] = 0x0434, [RU_DE_UP] = 0x0414,
+    [RU_ZHE] = 0x0436, [RU_ZHE_UP] = 0x0416,
+    [RU_E] = 0x044D, [RU_E_UP] = 0x042D,
+    [RU_YA] = 0x044F, [RU_YA_UP] = 0x042F,
+    [RU_CHE] = 0x0447, [RU_CHE_UP] = 0x0427,
+    [RU_ES] = 0x0441, [RU_ES_UP] = 0x0421,
+    [RU_EM] = 0x043C, [RU_EM_UP] = 0x041C,
+    [RU_I] = 0x0438, [RU_I_UP] = 0x0418,
+    [RU_TE] = 0x0442, [RU_TE_UP] = 0x0422,
+    [RU_SOFT] = 0x044C, [RU_SOFT_UP] = 0x042C,
+    [RU_BE] = 0x0431, [RU_BE_UP] = 0x0411,
+    [RU_YU] = 0x044E, [RU_YU_UP] = 0x042E,
+    [RU_COMM] = 0x002C, [RU_DOT] = 0x002E,
+    [RU_QUOT] = 0x0027, [RU_DQUO] = 0x0022,
+};
 
 // For _QWERTY layer
 #define GUI_ENT  GUI_T(KC_ENT)
@@ -126,7 +201,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
+[_RU] = LAYOUT_split_3x6_3( \
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+ UP(RU_JE, RU_JE_UP), UP(RU_TSE, RU_TSE_UP), UP(RU_U, RU_U_UP), UP(RU_KA, RU_KA_UP), UP(RU_IE, RU_IE_UP), UP(RU_EN, RU_EN_UP), UP(RU_GHE, RU_GHE_UP), UP(RU_SHA, RU_SHA_UP), UP(RU_SHCHA, RU_SHCHA_UP), UP(RU_ZE, RU_ZE_UP), UP(RU_HA, RU_HA_UP), UP(RU_HARD, RU_HARD_UP),
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      OSM_ALT, UP(RU_EF, RU_EF_UP), UP(RU_YERU, RU_YERU_UP), UP(RU_VE, RU_VE_UP), UP(RU_A, RU_A_UP), UP(RU_PE, RU_PE_UP), UP(RU_ER, RU_ER_UP), UP(RU_O, RU_O_UP), UP(RU_EL, RU_EL_UP), UP(RU_DE, RU_DE_UP), UP(RU_ZHE, RU_ZHE_UP), UP(RU_E, RU_E_UP),
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      OSM_SFT, UP(RU_YA, RU_YA_UP), UP(RU_CHE, RU_CHE_UP), UP(RU_ES, RU_ES_UP), UP(RU_EM, RU_EM_UP), UP(RU_I, RU_I_UP), UP(RU_TE, RU_TE_UP), UP(RU_SOFT, RU_SOFT_UP), UP(RU_BE, RU_BE_UP), UP(RU_YU, RU_YU_UP), UP(RU_COMM, RU_DOT), UP(RU_QUOT, RU_DQUO),
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          OSM_CTL, GUI_ENT, LOW_TAB,    RSE_BSP, KC_SPC, OSM_SFT
+                                      //`--------------------------'  `--------------------------'
+  ),
+
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed && keycode == KC_SPC && (get_mods() & MOD_MASK_GUI)) {
+        layer_invert(_RU);
+        return false;
+    }
+
+    return true;
+}
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
