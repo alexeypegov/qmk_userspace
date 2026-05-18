@@ -9,36 +9,53 @@ The base layer keeps letters on the main 3x5 columns, with the extra outer keys 
 Layer highlights:
 
 - Lower: numbers, shifted number symbols, brackets, braces, punctuation, and colon.
-- Raise: navigation, editing keys, brightness controls, media controls, volume, and Mouseless trigger (`Raise+I` toggles mouseless.click).
+- Raise: navigation, editing keys, brightness controls, selected media controls, punctuation, and Mouseless trigger (`Raise+I` toggles mouseless.click).
 - Func: function keys, Caps Lock, copy/paste-style shortcuts, RGB toggle, and macOS lock screen.
 - Mouse: mouse movement/buttons are defined, but there is currently no base-layer keybinding to enter this layer.
-- Russian: a Unicode-based Russian typing layer with a custom physical layout.
+- Russian: a physical remap layer for use with the standard macOS Russian input source. It sits above the base layer, but below Lower, Raise, and Func, so those layers keep working while Russian mode is active.
 
 Russian layer layout:
 
 ```text
-й ц у к е н    г ш щ з х ъ
+Tab й ц у к е  н г ш щ з х
 Alt ф ы в а п  р о л д ж э
 Shift я ч с м и  т ь б ю , '
 ```
 
-Shifted Russian behavior:
+Shifted Russian letter behavior is provided by the macOS Russian input source:
 
 - Russian letters emit uppercase variants when Shift is active.
-- `,` emits `.` when shifted.
-- `'` emits `"` when shifted.
+- Punctuation is handled separately on Raise because the macOS Russian input source places `,`, `.`, and `"` on different source keys.
 
-Russian mode is toggled in QMK with `Cmd+Space`. This shortcut is consumed by the firmware and does not switch the macOS input source.
+Extra punctuation is available without changing the Russian letter positions:
 
-For the Russian layer to work on macOS, enable and select the `Unicode Hex Input` input source:
+- In English mode, `Raise+,` is next track; in Russian mode, it emits `,`.
+- In English mode, `Raise+.` is volume down; in Russian mode, it emits `.`.
+- In English mode, `Raise+'` is the App/Menu key; in Russian mode, it emits `"`.
+- In English mode, `Raise+M` is previous track; in Russian mode, it emits `ъ`.
+
+Those Raise keys are implemented as custom QMK keycodes:
+
+- `RU_COMM`: sends next track normally, but sends `Shift+6` (`^` on the English layout) in Russian mode, which produces `,`.
+- `RU_DOT`: sends volume down normally, but sends `Shift+7` (`&` on the English layout) in Russian mode, which produces `.`.
+- `RU_DQUO`: sends App/Menu normally, but sends `Shift+2` (`@` on the English layout) in Russian mode, which produces `"`.
+- `RU_HARD`: sends previous track normally, but sends `]` in Russian mode, which produces `ъ`.
+
+This matches the macOS Russian input source used here, where `Shift+6` produces `,`, `Shift+7` produces `.`, and `Shift+2` produces `"`.
+
+Russian mode is toggled with `Cmd+Space`. The firmware toggles the QMK Russian remap layer on release, and the shortcut is still passed through so macOS switches input source at the same time.
+
+Because QMK and macOS keep their own input state, they can occasionally get out of sync. If the keyboard layer and macOS input source no longer match, select the proper macOS input source manually, then use `Cmd+Space` again when both sides are aligned.
+
+For the Russian layer to work on macOS, configure the usual macOS input switch shortcut and add a Russian input source:
 
 1. Open System Settings.
 1. Go to Keyboard.
 1. Under Text Input, click Edit.
-1. Add `Unicode Hex Input` from Other.
-1. Keep `Unicode Hex Input` selected while using the keyboard.
+1. Add `Russian` or `Russian - PC`.
+1. Configure `Cmd+Space` to switch input sources.
 
-The firmware emits Russian characters using QMK Unicode Map. If macOS is using a normal input source instead of `Unicode Hex Input`, Russian characters will appear as Option-symbol sequences such as `º¢£...`.
+The firmware does not emit Russian Unicode directly. It remaps the physical Cantor positions to the QWERTY source keys expected by the macOS Russian layout, while preserving thumb keys such as `Lower/Tab`. This keeps normal macOS text handling, shortcuts, and tools such as keybr.com working with regular keyboard events instead of Unicode Hex Input sequences.
 
 Build and flash:
 
