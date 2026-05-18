@@ -216,9 +216,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed && keycode == KC_SPC && (get_mods() & MOD_MASK_GUI)) {
-        layer_invert(_RU);
-        return false;
+    static bool ru_toggle_pending = false;
+    const uint8_t mods = get_mods() | get_oneshot_mods();
+
+    if (keycode == KC_SPC) {
+        if (record->event.pressed) {
+            ru_toggle_pending = (mods & MOD_MASK_GUI) && !(mods & (MOD_MASK_CTRL | MOD_MASK_ALT | MOD_MASK_SHIFT));
+            return !ru_toggle_pending;
+        }
+
+        if (ru_toggle_pending) {
+            ru_toggle_pending = false;
+            layer_invert(_RU);
+            return false;
+        }
     }
 
     return true;
