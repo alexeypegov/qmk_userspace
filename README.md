@@ -33,6 +33,7 @@ Extra punctuation is available without changing the Russian letter positions:
 - In English mode, `Raise+.` is volume down; in Russian mode, it emits `.`.
 - In English mode, `Raise+'` is the App/Menu key; in Russian mode, it emits `"`.
 - In English mode, `Raise+M` is previous track; in Russian mode, it emits `ъ`.
+- In English mode, `Raise+/` is volume up; in Russian mode, it is disabled.
 
 Those Raise keys are implemented as custom QMK keycodes:
 
@@ -40,6 +41,7 @@ Those Raise keys are implemented as custom QMK keycodes:
 - `RU_DOT`: sends volume down normally, but sends `Shift+7` (`&` on the English layout) in Russian mode, which produces `.`.
 - `RU_DQUO`: sends App/Menu normally, but sends `Shift+2` (`@` on the English layout) in Russian mode, which produces `"`.
 - `RU_HARD`: sends previous track normally, but sends `]` in Russian mode, which produces `ъ`.
+- `RU_VOLU`: sends volume up normally, but sends nothing in Russian mode.
 
 This matches the macOS Russian input source used here, where `Shift+6` produces `,`, `Shift+7` produces `.`, and `Shift+2` produces `"`.
 

@@ -19,6 +19,7 @@ enum custom_keycodes {
     RU_DOT,
     RU_DQUO,
     RU_HARD,
+    RU_VOLU,
 };
 
 enum combos {
@@ -99,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_HOME, KC_END , KC_MINS, KC_EQL , KC_PGDN,                      KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, RU_DQUO,_______ ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_LT  , KC_GT  , KC_COPY, KC_PSTE, KC_SCLN,                      KC_MPLY, RU_HARD, RU_COMM, RU_DOT,  KC_VOLU,XXXXXXX ,
+      _______, KC_LT  , KC_GT  , KC_COPY, KC_PSTE, KC_SCLN,                      KC_MPLY, RU_HARD, RU_COMM, RU_DOT,  RU_VOLU,XXXXXXX ,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           CTL_ESC, KC_TRNS, XXXXXXX,    RAISE  , KC_TRNS, KC_TRNS\
                                       //`--------------------------'  `--------------------------'
@@ -199,6 +200,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     tap_code(KC_MPRV);
                 }
+            }
+            return false;
+
+        case RU_VOLU:
+            if (record->event.pressed && !layer_state_is(_RU)) {
+                tap_code(KC_VOLU);
             }
             return false;
     }
