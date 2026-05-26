@@ -9,12 +9,14 @@ ifeq ($(QMK_USERSPACE),)
     QMK_USERSPACE := $(shell pwd)
 endif
 
+EFFECTIVE_GOALS := $(if $(MAKECMDGOALS),$(MAKECMDGOALS),build)
+
+ifneq ($(filter-out flash layout,$(EFFECTIVE_GOALS)),)
 QMK_FIRMWARE_ROOT := $(shell qmk config -ro user.qmk_home | cut -d= -f2 | sed -e 's@^None$$@@g')
 ifeq ($(QMK_FIRMWARE_ROOT),)
     QMK_FIRMWARE_ROOT := $(realpath $(QMK_USERSPACE)/../qmk_firmware)
 endif
 
-ifneq ($(MAKECMDGOALS),flash)
 ifeq ($(QMK_FIRMWARE_ROOT),)
     $(error Cannot determine qmk_firmware location. `qmk config -ro user.qmk_home` is not set)
 endif
