@@ -12,9 +12,9 @@ Layer highlights:
 - Raise: navigation, editing keys, brightness controls, selected media controls, punctuation, and Mouseless trigger (`Raise+I` toggles mouseless.click).
 - Func: function keys, Caps Lock, copy/paste-style shortcuts, RGB toggle, and macOS lock screen.
 - Mouse: mouse movement/buttons are defined, but there is currently no base-layer keybinding to enter this layer.
-- Russian: a physical remap layer for use with the standard macOS Russian input source. It sits above the base layer, but below Lower, Raise, and Func, so those layers keep working while Russian mode is active.
+- Russian typing is handled by the custom macOS `Russian Cantor 42` input source in `layout/`. QMK does not toggle a Russian layer with `Cmd+Space`; macOS owns language switching.
 
-Russian layer layout:
+Custom macOS Russian layout:
 
 ```text
 Tab й ц у к е  н г ш щ з х
@@ -22,42 +22,34 @@ Alt ф ы в а п  р о л д ж э
 Shift я ч с м и  т ь б ю , '
 ```
 
-Shifted Russian letter behavior is provided by the macOS Russian input source:
+Shifted Russian letter behavior is provided by the macOS custom input source:
 
 - Russian letters emit uppercase variants when Shift is active.
-- Punctuation is handled separately on Raise because the macOS Russian input source places `,`, `.`, and `"` on different source keys.
+- `Option+M` emits `ъ`; `Shift+Option+M` emits `Ъ`.
+- `Option+'` emits `'`; `Shift+Option+'` emits `"`.
+- `Option+E` emits `ё`; `Shift+Option+E` emits `Ё`.
 
-Extra punctuation is available without changing the Russian letter positions:
+Two base keys are tap-hold source keys for the macOS layout:
 
-- In English mode, `Raise+,` is next track; in Russian mode, it emits `,`.
-- In English mode, `Raise+.` is volume down; in Russian mode, it emits `.`.
-- In English mode, `Raise+'` is the App/Menu key; in Russian mode, it emits `"`.
-- In English mode, `Raise+M` is previous track; in Russian mode, it emits `ъ`.
-- In English mode, `Raise+/` is volume up; in Russian mode, it is disabled.
+- `Func` taps as `` ` `` and holds for the QMK Func layer. In the custom Russian layout, `` ` `` emits `ю`.
+- `AltGr` taps as `;` and holds as right Option. In the custom Russian layout, `;` emits `э`.
 
-Those Raise keys are implemented as custom QMK keycodes:
+For Russian typing to work on macOS, install and select the custom input source:
 
-- `RU_COMM`: sends next track normally, but sends `Shift+6` (`^` on the English layout) in Russian mode, which produces `,`.
-- `RU_DOT`: sends volume down normally, but sends `Shift+7` (`&` on the English layout) in Russian mode, which produces `.`.
-- `RU_DQUO`: sends App/Menu normally, but sends `Shift+2` (`@` on the English layout) in Russian mode, which produces `"`.
-- `RU_HARD`: sends previous track normally, but sends `]` in Russian mode, which produces `ъ`.
-- `RU_VOLU`: sends volume up normally, but sends nothing in Russian mode.
+```sh
+cp layout/Russian-Cantor-42.keylayout ~/Library/Keyboard\ Layouts/
+cp layout/Russian.icns ~/Library/Keyboard\ Layouts/
+```
 
-This matches the macOS Russian input source used here, where `Shift+6` produces `,`, `Shift+7` produces `.`, and `Shift+2` produces `"`.
-
-Russian mode is toggled with `Cmd+Space`. The firmware toggles the QMK Russian remap layer on release, and the shortcut is still passed through so macOS switches input source at the same time.
-
-Because QMK and macOS keep their own input state, they can occasionally get out of sync. If the keyboard layer and macOS input source no longer match, select the proper macOS input source manually, then use `Cmd+Space` again when both sides are aligned.
-
-For the Russian layer to work on macOS, configure the usual macOS input switch shortcut and add a Russian input source:
+Log out and log back in after copying the layout files. The layout will not be visible in System Settings until macOS reloads input sources.
 
 1. Open System Settings.
 1. Go to Keyboard.
 1. Under Text Input, click Edit.
-1. Add `Russian` or `Russian - PC`.
+1. Add `Russian Cantor 42` from `Other`.
 1. Configure `Cmd+Space` to switch input sources.
 
-The firmware does not emit Russian Unicode directly. It remaps the physical Cantor positions to the QWERTY source keys expected by the macOS Russian layout, while preserving thumb keys such as `Lower/Tab`. This keeps normal macOS text handling, shortcuts, and tools such as keybr.com working with regular keyboard events instead of Unicode Hex Input sequences.
+The firmware does not emit Russian Unicode directly. It sends normal keyboard source keys and lets the macOS custom input source produce Russian characters. If typed characters look wrong, manually select the expected macOS input source from the input menu; there is no QMK Russian state to sync.
 
 Build and flash:
 
