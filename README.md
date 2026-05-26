@@ -28,6 +28,7 @@ Shifted Russian letter behavior is provided by the macOS custom input source:
 - `Option+M` emits `ъ`; `Shift+Option+M` emits `Ъ`.
 - `Option+'` emits `'`; `Shift+Option+'` emits `"`.
 - `Option+E` emits `ё`; `Shift+Option+E` emits `Ё`.
+- `Option+/` emits `?`.
 
 Two base keys are tap-hold source keys for the macOS layout:
 
