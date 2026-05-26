@@ -56,6 +56,7 @@
       <key code="48" output="&#x9;"/>
       <key code="49" output=" "/>
       <key code="50" output="ю"/>
+      <key code="51" output="&#x7F;"/>
     </keyMap>
     <keyMap index="1">
       <key code="0" output="Ф"/>
@@ -94,6 +95,7 @@
       <key code="48" output="&#x9;"/>
       <key code="49" output=" "/>
       <key code="50" output="Ю"/>
+      <key code="51" output="&#x7F;"/>
     </keyMap>
     <keyMap index="2">
       <key code="0" output="ф"/>
@@ -132,6 +134,7 @@
       <key code="48" output="&#x9;"/>
       <key code="49" output=" "/>
       <key code="50" output="ю"/>
+      <key code="51" output="&#x7F;"/>
     </keyMap>
     <keyMap index="3">
       <key code="0" output="Ф"/>
@@ -170,6 +173,7 @@
       <key code="48" output="&#x9;"/>
       <key code="49" output=" "/>
       <key code="50" output="Ю"/>
+      <key code="51" output="&#x7F;"/>
     </keyMap>
   </keyMapSet>
 </keyboard>

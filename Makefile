@@ -20,13 +20,19 @@ ifeq ($(QMK_FIRMWARE_ROOT),)
 endif
 endif
 
-.PHONY: build flash
+.PHONY: build flash layout
 
 build:
 	cd $(QMK_FIRMWARE_ROOT) && qmk compile -kb cantor -km alexeypegov -e QMK_USERSPACE=$(QMK_USERSPACE)
 
 flash:
 	dfu-util -a 0 -s 0x08000000:leave -D cantor_alexeypegov.bin
+
+layout:
+	mkdir -p "$$HOME/Library/Keyboard Layouts"
+	cp layout/Russian-Cantor-42.keylayout "$$HOME/Library/Keyboard Layouts/"
+	cp layout/Russian-Cantor-42.icns "$$HOME/Library/Keyboard Layouts/"
+	printf '%s\n' 'Installed Russian Cantor 42. Log out and log back in before selecting it in System Settings.'
 
 %:
 	+$(MAKE) -C $(QMK_FIRMWARE_ROOT) $(MAKECMDGOALS) QMK_USERSPACE=$(QMK_USERSPACE)

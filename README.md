@@ -37,11 +37,10 @@ Two base keys are tap-hold source keys for the macOS layout:
 For Russian typing to work on macOS, install and select the custom input source:
 
 ```sh
-cp layout/Russian-Cantor-42.keylayout ~/Library/Keyboard\ Layouts/
-cp layout/Russian-Cantor-42.icns ~/Library/Keyboard\ Layouts/
+make layout
 ```
 
-Log out and log back in after copying the layout files. The layout will not be visible in System Settings until macOS reloads input sources. The icon filename must match the layout filename.
+This copies `layout/Russian-Cantor-42.keylayout` and `layout/Russian-Cantor-42.icns` to `~/Library/Keyboard Layouts/`. Log out and log back in after installing or changing the layout files. The layout will not be visible in System Settings until macOS reloads input sources. The icon filename must match the layout filename.
 
 1. Open System Settings.
 1. Go to Keyboard.
