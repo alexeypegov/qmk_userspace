@@ -4,7 +4,7 @@
 
 This userspace currently contains a personal Cantor keymap based on Mark Stosberg's 3x5+1 layout, with local changes for macOS, programming, media controls, Mouseless, and Russian typing.
 
-The base layer keeps letters on the main 3x5 columns, with the extra outer keys used for Tab, one-shot Option, one-shot Shift, Delete, one-shot AltGr, and one-shot Func. The thumb clusters provide one-shot Ctrl, Cmd/Enter, Lower/Tab, Raise/Backspace, Space, and one-shot Shift.
+The base layer keeps letters on the main 3x5 columns, with the extra outer keys used for Tab, one-shot Option, one-shot Shift, `[`, one-shot AltGr, and one-shot Func. The thumb clusters provide one-shot Ctrl, Cmd/Enter, Lower/Tab, Raise/Backspace, Space, and one-shot Shift.
 
 Layer highlights:
 
