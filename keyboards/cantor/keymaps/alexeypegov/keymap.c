@@ -20,12 +20,14 @@ enum custom_keycodes {
 enum combos {
   THREE_FOUR_DASH,
   DF_DASH,
-  JK_ESC
+  JK_ESC,
+  COMM_DOT_QUES
 };
 
 const uint16_t PROGMEM three_four_combo[] = {KC_3, KC_4, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM comm_dot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -34,6 +36,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [THREE_FOUR_DASH]    = COMBO(three_four_combo, KC_MINS),
   // For Vim, put Escape on the home row
   [JK_ESC]    = COMBO(jk_combo, KC_ESC),
+  // In Russian Cantor 42, Option+/ emits question mark.
+  [COMM_DOT_QUES] = COMBO(comm_dot_combo, LALT(KC_SLSH)),
 
 };
 
