@@ -19,7 +19,7 @@ Custom macOS Russian layout:
 ```text
 Tab й ц у к е  н г ш щ з х
 Alt ф ы в а п  р о л д ж э
-Shift я ч с м и  т ь б ю , '
+Shift я ч с м и  т ь , . б ю
 ```
 
 Shifted Russian letter behavior is provided by the macOS custom input source:
@@ -42,6 +42,8 @@ make layout
 ```
 
 This copies `layout/Russian-Cantor-42.keylayout` and `layout/Russian-Cantor-42.icns` to `~/Library/Keyboard Layouts/`. Log out and log back in after installing or changing the layout files. The layout will not be visible in System Settings until macOS reloads input sources. The icon filename must match the layout filename.
+
+Sometimes it is better to copy the layout into /Library/Keyboard Layouts instead, since copying it into user library might lead to some effects like inability to use the layout in certain apps.
 
 1. Open System Settings.
 1. Go to Keyboard.
