@@ -53,6 +53,8 @@ Sometimes it is better to copy the layout into /Library/Keyboard Layouts instead
 
 The firmware does not emit Russian Unicode directly. It sends normal keyboard source keys and lets the macOS custom input source produce Russian characters. If typed characters look wrong, manually select the expected macOS input source from the input menu; there is no QMK Russian state to sync.
 
+The custom layout has a Command/Control passthrough map so shortcuts such as `Cmd+W`, `Cmd+Q`, `Cmd+S`, and `Ctrl+C` continue to use QWERTY source characters while Russian typing is active.
+
 Build and flash:
 
 ```sh
