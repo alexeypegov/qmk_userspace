@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <keyboard group="126" id="-33225" name="Russian Cantor 42" maxout="1">
   <layouts>
@@ -67,7 +67,7 @@
       <key code="39" output="ж"/>
       <key code="40" output="л"/>
       <key code="41" output="э"/>
-      <key code="42" output="э"/>
+      <key code="42" output="\"/>
       <key code="43" output=","/>
       <key code="44" output="б"/>
       <key code="45" output="т"/>
@@ -77,6 +77,17 @@
       <key code="49" output=" "/>
       <key code="50" output="ю"/>
       <key code="51" output="&#x7F;"/>
+      <key code="53" output="&#x1B;"/>
+      <key code="114" output="&#x5;"/>
+      <key code="115" output="&#x1;"/>
+      <key code="116" output="&#xB;"/>
+      <key code="117" output="&#x7F;"/>
+      <key code="119" output="&#x4;"/>
+      <key code="121" output="&#xC;"/>
+      <key code="123" output="&#x1C;"/>
+      <key code="124" output="&#x1D;"/>
+      <key code="125" output="&#x1F;"/>
+      <key code="126" output="&#x1E;"/>
     </keyMap>
     <keyMap index="1">
       <key code="0" output="Ф"/>
@@ -120,7 +131,7 @@
       <key code="39" output="Ж"/>
       <key code="40" output="Л"/>
       <key code="41" output="Э"/>
-      <key code="42" output="Э"/>
+      <key code="42" output="|"/>
       <key code="43" output=","/>
       <key code="44" output="Б"/>
       <key code="45" output="Т"/>
@@ -130,6 +141,17 @@
       <key code="49" output=" "/>
       <key code="50" output="Ю"/>
       <key code="51" output="&#x7F;"/>
+      <key code="53" output="&#x1B;"/>
+      <key code="114" output="&#x5;"/>
+      <key code="115" output="&#x1;"/>
+      <key code="116" output="&#xB;"/>
+      <key code="117" output="&#x7F;"/>
+      <key code="119" output="&#x4;"/>
+      <key code="121" output="&#xC;"/>
+      <key code="123" output="&#x1C;"/>
+      <key code="124" output="&#x1D;"/>
+      <key code="125" output="&#x1F;"/>
+      <key code="126" output="&#x1E;"/>
     </keyMap>
     <keyMap index="2">
       <key code="0" output="ф"/>
@@ -173,7 +195,7 @@
       <key code="39" output="'"/>
       <key code="40" output="л"/>
       <key code="41" output="э"/>
-      <key code="42" output="ё"/>
+      <key code="42" output="\"/>
       <key code="43" output=","/>
       <key code="44" output="?"/>
       <key code="45" output="т"/>
@@ -183,6 +205,17 @@
       <key code="49" output=" "/>
       <key code="50" output="ю"/>
       <key code="51" output="&#x7F;"/>
+      <key code="53" output="&#x1B;"/>
+      <key code="114" output="&#x5;"/>
+      <key code="115" output="&#x1;"/>
+      <key code="116" output="&#xB;"/>
+      <key code="117" output="&#x7F;"/>
+      <key code="119" output="&#x4;"/>
+      <key code="121" output="&#xC;"/>
+      <key code="123" output="&#x1C;"/>
+      <key code="124" output="&#x1D;"/>
+      <key code="125" output="&#x1F;"/>
+      <key code="126" output="&#x1E;"/>
     </keyMap>
     <keyMap index="3">
       <key code="0" output="Ф"/>
@@ -226,7 +259,7 @@
       <key code="39" output="&quot;"/>
       <key code="40" output="Л"/>
       <key code="41" output="Э"/>
-      <key code="42" output="Ё"/>
+      <key code="42" output="|"/>
       <key code="43" output=","/>
       <key code="44" output="?"/>
       <key code="45" output="Т"/>
@@ -236,6 +269,17 @@
       <key code="49" output=" "/>
       <key code="50" output="Ю"/>
       <key code="51" output="&#x7F;"/>
+      <key code="53" output="&#x1B;"/>
+      <key code="114" output="&#x5;"/>
+      <key code="115" output="&#x1;"/>
+      <key code="116" output="&#xB;"/>
+      <key code="117" output="&#x7F;"/>
+      <key code="119" output="&#x4;"/>
+      <key code="121" output="&#xC;"/>
+      <key code="123" output="&#x1C;"/>
+      <key code="124" output="&#x1D;"/>
+      <key code="125" output="&#x1F;"/>
+      <key code="126" output="&#x1E;"/>
     </keyMap>
     <keyMap index="4">
       <key code="0" output="a"/>
@@ -289,6 +333,17 @@
       <key code="49" output=" "/>
       <key code="50" output="`"/>
       <key code="51" output="&#x7F;"/>
+      <key code="53" output="&#x1B;"/>
+      <key code="114" output="&#x5;"/>
+      <key code="115" output="&#x1;"/>
+      <key code="116" output="&#xB;"/>
+      <key code="117" output="&#x7F;"/>
+      <key code="119" output="&#x4;"/>
+      <key code="121" output="&#xC;"/>
+      <key code="123" output="&#x1C;"/>
+      <key code="124" output="&#x1D;"/>
+      <key code="125" output="&#x1F;"/>
+      <key code="126" output="&#x1E;"/>
     </keyMap>
   </keyMapSet>
 </keyboard>
