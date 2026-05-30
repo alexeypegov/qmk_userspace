@@ -22,3 +22,10 @@
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
 
 #define MASTER_LEFT
+
+// Some KVMs are slow to re-establish active USB communication after switching.
+#define SPLIT_USB_TIMEOUT 5000
+#define SPLIT_USB_TIMEOUT_POLL 25
+#define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_WATCHDOG_TIMEOUT 5500
+#define USB_SUSPEND_WAKEUP_DELAY 200
