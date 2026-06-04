@@ -22,13 +22,19 @@ ifeq ($(QMK_FIRMWARE_ROOT),)
 endif
 endif
 
-.PHONY: build flash layout
+.PHONY: build flash flash-wait layout
 
 build:
 	cd $(QMK_FIRMWARE_ROOT) && qmk compile -kb cantor -km alexeypegov -e QMK_USERSPACE=$(QMK_USERSPACE)
 
 flash:
 	dfu-util -a 0 -s 0x08000000:leave -D cantor_alexeypegov.bin
+
+flash-wait:
+	i=10; while [ $$i -gt 0 ]; do printf '%s... ' "$$i"; sleep 1; i=$$((i - 1)); done; printf '\n'
+	$(MAKE) flash
+	i=10; while [ $$i -gt 0 ]; do printf '%s... ' "$$i"; sleep 1; i=$$((i - 1)); done; printf '\n'
+	$(MAKE) flash
 
 layout:
 	mkdir -p "$$HOME/Library/Keyboard Layouts"

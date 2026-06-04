@@ -21,13 +21,15 @@ enum combos {
   THREE_FOUR_DASH,
   DF_DASH,
   JK_ESC,
-  COMM_DOT_QUES
+  COMM_DOT_QUES,
+  M_COMM_HARD
 };
 
 const uint16_t PROGMEM three_four_combo[] = {KC_3, KC_4, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM comm_dot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM m_comm_combo[] = {KC_M, KC_COMM, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -38,6 +40,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [JK_ESC]    = COMBO(jk_combo, KC_ESC),
   // In Russian Cantor 42, Option+/ emits question mark.
   [COMM_DOT_QUES] = COMBO(comm_dot_combo, LALT(KC_SLSH)),
+  // In Russian Cantor 42, Option+M emits hard sign.
+  [M_COMM_HARD] = COMBO(m_comm_combo, LALT(KC_M)),
 
 };
 

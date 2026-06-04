@@ -30,6 +30,11 @@ Shifted Russian letter behavior is provided by the macOS custom input source:
 - `Option+E` emits `ё`; `Shift+Option+E` emits `Ё`.
 - `Option+/` emits `?`.
 
+QMK also has Russian-oriented combos:
+
+- `,` + `.` sends `Option+/`, which emits `?`.
+- `M` + `,` sends `Option+M`, which emits `ъ`; hold Shift with the combo for `Ъ`.
+
 Two base keys are tap-hold source keys for the macOS layout:
 
 - `Func` taps as `` ` `` and holds for the QMK Func layer. In the custom Russian layout, `` ` `` emits `ю`.
