@@ -9,7 +9,7 @@ The base layer keeps letters on the main 3x5 columns, with the extra outer keys 
 Layer highlights:
 
 - Lower: numbers, shifted number symbols, brackets, braces, punctuation, and colon.
-- Raise: navigation, editing keys, brightness controls, selected media controls, punctuation, and Mouseless triggers (`Raise+I` sends `F13` for regular mode; `Raise+[` sends `F14` for free mode).
+- Raise: navigation, editing keys, brightness controls, selected media controls, punctuation, and Mouseless triggers (`Raise+I` sends `F13` for regular mode; `Raise+O` sends `F14` for free mode).
 - Func: function keys, Caps Lock, copy/paste-style shortcuts, RGB toggle, and macOS lock screen.
 - Mouse: mouse movement/buttons are defined, but there is currently no base-layer keybinding to enter this layer.
 - Russian typing is handled by the custom macOS `Russian Cantor 42` input source in `layout/`. QMK does not toggle a Russian layer with `Cmd+Space`; macOS owns language switching.
