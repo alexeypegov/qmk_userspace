@@ -8,7 +8,7 @@
 #define HOLD_ON_OTHER_KEY_PRESS
 #define PERMISSIVE_HOLD
 
-#define COMBO_COUNT 5
+#define COMBO_COUNT 6
 #define COMBO_TERM 40
 
 #define ONESHOT_TAP_TOGGLE 3

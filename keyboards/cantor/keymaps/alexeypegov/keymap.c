@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "xcase.h"
 
 void keyboard_post_init_user(void) {
 #ifdef RGB_MATRIX_ENABLE
@@ -10,7 +11,7 @@ void keyboard_post_init_user(void) {
 }
 
 enum custom_keycodes {
-    DEFAULT = SAFE_RANGE,
+    DEFAULT = XCASE_SAFE_RANGE,
     LOWER,
     RAISE,
     FUNC,
@@ -22,7 +23,8 @@ enum combos {
   DF_DASH,
   JK_ESC,
   COMM_DOT_QUES,
-  M_COMM_HARD
+  M_COMM_HARD,
+  UI_CAMEL
 };
 
 const uint16_t PROGMEM three_four_combo[] = {KC_3, KC_4, COMBO_END};
@@ -30,6 +32,7 @@ const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM comm_dot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM m_comm_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -42,6 +45,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMM_DOT_QUES] = COMBO(comm_dot_combo, LALT(KC_SLSH)),
   // In Russian Cantor 42, Option+M emits hard sign.
   [M_COMM_HARD] = COMBO(m_comm_combo, LALT(KC_M)),
+  [UI_CAMEL]    = COMBO(ui_combo, XC_CML),
 
 };
 
@@ -135,6 +139,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    return process_record_xcase(keycode, record);
+}
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

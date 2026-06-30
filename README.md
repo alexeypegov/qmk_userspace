@@ -35,6 +35,10 @@ QMK also has Russian-oriented combos:
 - `,` + `.` sends `Option+/`, which emits `?`.
 - `M` + `,` sends `Option+M`, which emits `ъ`; hold Shift with the combo for `Ъ`.
 
+## camelCase typing
+
+Pressing `U` + `I` together activates camelCase mode via [XCase](https://github.com/ohshitgorillas/qmk-xcase) (vendored into the keymap directory). While active, pressing Space capitalizes the next letter instead of inserting a space. Double-space exits the mode.
+
 Two base keys are tap-hold source keys for the macOS layout:
 
 - `Func` taps as `` ` `` and holds for the QMK Func layer. In the custom Russian layout, `` ` `` emits `ю`.

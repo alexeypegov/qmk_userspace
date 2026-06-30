@@ -1,4 +1,5 @@
 AUTO_SHIFT_ENABLE = no
+SRC += xcase.c
 COMBO_ENABLE = yes
 EXTRAKEY_ENABLE = yes
 OLED_ENABLE = no
