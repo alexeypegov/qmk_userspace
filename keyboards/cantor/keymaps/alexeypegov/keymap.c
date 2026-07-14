@@ -49,6 +49,18 @@ combo_t key_combos[COMBO_COUNT] = {
 
 };
 
+#ifdef COMBO_MUST_HOLD_PER_COMBO
+bool get_combo_must_hold(uint16_t combo_index, combo_t *combo) {
+    // JK_ESC overlaps with the common Russian bigram "ол" (as in "около"),
+    // so require a brief hold to avoid misfiring while typing fast.
+    switch (combo_index) {
+        case JK_ESC:
+            return true;
+    }
+    return false;
+}
+#endif
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
