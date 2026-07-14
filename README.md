@@ -26,7 +26,7 @@ Shifted Russian letter behavior is provided by the macOS custom input source:
 
 - Russian letters emit uppercase variants when Shift is active.
 - `Option+M` emits `ъ`; `Shift+Option+M` emits `Ъ`.
-- `Option+'` emits `'`; `Shift+Option+'` emits `"`.
+- `Option+'` emits `"`.
 - `Option+E` emits `ё`; `Shift+Option+E` emits `Ё`.
 - `Option+/` emits `?`.
 
@@ -52,7 +52,7 @@ make layout
 
 This copies `layout/Russian-Cantor-42.keylayout` and `layout/Russian-Cantor-42.icns` to `~/Library/Keyboard Layouts/`. Log out and log back in after installing or changing the layout files. The layout will not be visible in System Settings until macOS reloads input sources. The icon filename must match the layout filename.
 
-Sometimes it is better to copy the layout into /Library/Keyboard Layouts instead, since copying it into user library might lead to some effects like inability to use the layout in certain apps.
+Sometimes it is better to copy the layout into `/Library/Keyboard Layouts` instead, since copying it into the user library might lead to some effects like inability to use the layout in certain apps. Use `make layout-global` for that (requires `sudo`); re-run it whenever the layout files change, since it does not overwrite itself automatically.
 
 1. Open System Settings.
 1. Go to Keyboard.

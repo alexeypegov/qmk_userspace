@@ -11,7 +11,7 @@ endif
 
 EFFECTIVE_GOALS := $(if $(MAKECMDGOALS),$(MAKECMDGOALS),build)
 
-ifneq ($(filter-out flash layout,$(EFFECTIVE_GOALS)),)
+ifneq ($(filter-out flash layout layout-global,$(EFFECTIVE_GOALS)),)
 QMK_FIRMWARE_ROOT := $(shell qmk config -ro user.qmk_home | cut -d= -f2 | sed -e 's@^None$$@@g')
 ifeq ($(QMK_FIRMWARE_ROOT),)
     QMK_FIRMWARE_ROOT := $(realpath $(QMK_USERSPACE)/../qmk_firmware)
@@ -22,7 +22,7 @@ ifeq ($(QMK_FIRMWARE_ROOT),)
 endif
 endif
 
-.PHONY: build flash flash-wait layout
+.PHONY: build flash flash-wait layout layout-global
 
 build:
 	cd $(QMK_FIRMWARE_ROOT) && qmk compile -kb cantor -km alexeypegov -e QMK_USERSPACE=$(QMK_USERSPACE)
@@ -41,6 +41,10 @@ layout:
 	cp layout/Russian-Cantor-42.keylayout "$$HOME/Library/Keyboard Layouts/"
 	cp layout/Russian-Cantor-42.icns "$$HOME/Library/Keyboard Layouts/"
 	printf '%s\n' 'Installed Russian Cantor 42. Log out and log back in before selecting it in System Settings.'
+
+layout-global:
+	sudo cp layout/Russian-Cantor-42.keylayout layout/Russian-Cantor-42.icns "/Library/Keyboard Layouts/"
+	printf '%s\n' 'Installed Russian Cantor 42 system-wide. Log out and log back in before selecting it in System Settings.'
 
 %:
 	+$(MAKE) -C $(QMK_FIRMWARE_ROOT) $(MAKECMDGOALS) QMK_USERSPACE=$(QMK_USERSPACE)
