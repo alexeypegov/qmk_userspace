@@ -196,11 +196,11 @@
       <key code="40" output="л"/>
       <key code="41" output="э"/>
       <key code="42" output="\"/>
-      <key code="43" output=","/>
+      <key code="43" output=";"/>
       <key code="44" output="?"/>
       <key code="45" output="т"/>
       <key code="46" output="ъ"/>
-      <key code="47" output="."/>
+      <key code="47" output=":"/>
       <key code="48" output="&#x9;"/>
       <key code="49" output=" "/>
       <key code="50" output="ю"/>
@@ -260,11 +260,11 @@
       <key code="40" output="Л"/>
       <key code="41" output="Э"/>
       <key code="42" output="|"/>
-      <key code="43" output=","/>
+      <key code="43" output=";"/>
       <key code="44" output="?"/>
       <key code="45" output="Т"/>
       <key code="46" output="Ъ"/>
-      <key code="47" output="."/>
+      <key code="47" output=":"/>
       <key code="48" output="&#x9;"/>
       <key code="49" output=" "/>
       <key code="50" output="Ю"/>
