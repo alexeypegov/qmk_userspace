@@ -24,7 +24,7 @@ enum combos {
   JK_ESC,
   COMM_DOT_QUES,
   M_COMM_HARD,
-  UI_CAMEL
+  KL_CMD_ENT
 };
 
 const uint16_t PROGMEM three_four_combo[] = {KC_3, KC_4, COMBO_END};
@@ -32,7 +32,7 @@ const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM comm_dot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM m_comm_combo[] = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -45,7 +45,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMM_DOT_QUES] = COMBO(comm_dot_combo, LALT(KC_SLSH)),
   // In Russian Cantor 42, Option+M emits hard sign.
   [M_COMM_HARD] = COMBO(m_comm_combo, LALT(KC_M)),
-  [UI_CAMEL]    = COMBO(ui_combo, XC_CML),
+  // GUI_ENT is Cmd on hold and Enter on tap, so Cmd+Enter can't be typed with it.
+  [KL_CMD_ENT] = COMBO(kl_combo, G(KC_ENT)),
 
 };
 
@@ -114,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_DEL , KC_INS, KC_UNDS, KC_PLUS, KC_PGUP,                      KC_BRID, KC_BRIU, KC_F13 , KC_F14 , KC_PIPE,KC_BSLS ,
+      _______, KC_DEL , KC_INS, KC_UNDS, KC_PLUS, KC_PGUP,                      KC_F16 , KC_F17 , KC_F13 , KC_F14 , KC_PIPE,KC_BSLS ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_HOME, KC_END , KC_MINS, KC_EQL , KC_PGDN,                      KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_APP ,_______ ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|

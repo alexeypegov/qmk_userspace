@@ -9,7 +9,7 @@ The base layer keeps letters on the main 3x5 columns, with the extra outer keys 
 Layer highlights:
 
 - Lower: numbers, shifted number symbols, brackets, braces, punctuation, and colon.
-- Raise: navigation, editing keys, brightness controls, selected media controls, punctuation, and Mouseless triggers (`Raise+I` sends `F13` for regular mode; `Raise+O` sends `F14` for free mode).
+- Raise: navigation, editing keys, `F16`/`F17` on `Raise+Y`/`Raise+U` (free for macOS shortcuts, e.g. screenshots), selected media controls, punctuation, and Mouseless triggers (`Raise+I` sends `F13` for regular mode; `Raise+O` sends `F14` for free mode).
 - Func: function keys, Caps Lock, copy/paste-style shortcuts, RGB toggle, and macOS lock screen.
 - Mouse: mouse movement/buttons are defined, but there is currently no base-layer keybinding to enter this layer.
 - Russian typing is handled by the custom macOS `Russian Cantor 42` input source in `layout/`. QMK does not toggle a Russian layer with `Cmd+Space`; macOS owns language switching.
@@ -36,9 +36,7 @@ QMK also has Russian-oriented combos:
 - `,` + `.` sends `Option+/`, which emits `?`.
 - `M` + `,` sends `Option+M`, which emits `ъ`; hold Shift with the combo for `Ъ`.
 
-## camelCase typing
-
-Pressing `U` + `I` together activates camelCase mode via [XCase](https://github.com/ohshitgorillas/qmk-xcase) (vendored into the keymap directory). While active, pressing Space capitalizes the next letter instead of inserting a space. Double-space exits the mode.
+`K` + `L` sends `Cmd+Enter`, which the `Cmd/Enter` tap-hold thumb key can't produce.
 
 Two base keys are tap-hold source keys for the macOS layout:
 
