@@ -28,12 +28,13 @@ Shifted Russian letter behavior is provided by the macOS custom input source:
 - `Option+M` emits `ъ`; `Shift+Option+M` emits `Ъ`.
 - `Option+'` emits `"`.
 - `Option+E` emits `ё`; `Shift+Option+E` emits `Ё`.
-- `Option+/` emits `?`.
+- `Option+/` emits `/`; `Shift+Option+/` emits `?`.
+- `Option+-` emits `—` (em dash).
 - `Option+,` emits `;`; `Option+.` emits `:` (the `,` and `.` keys otherwise emit plain `,`/`.` regardless of Shift or Option, so this slot was free).
 
 QMK also has Russian-oriented combos:
 
-- `,` + `.` sends `Option+/`, which emits `?`.
+- `,` + `.` sends `Shift+Option+/`, which emits `?`.
 - `M` + `,` sends `Option+M`, which emits `ъ`; hold Shift with the combo for `Ъ`.
 
 `K` + `L` sends `Cmd+Enter`, which the `Cmd/Enter` tap-hold thumb key can't produce.

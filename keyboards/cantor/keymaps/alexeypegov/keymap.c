@@ -41,8 +41,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [THREE_FOUR_DASH]    = COMBO(three_four_combo, KC_MINS),
   // For Vim, put Escape on the home row
   [JK_ESC]    = COMBO(jk_combo, KC_ESC),
-  // In Russian Cantor 42, Option+/ emits question mark.
-  [COMM_DOT_QUES] = COMBO(comm_dot_combo, LALT(KC_SLSH)),
+  // In Russian Cantor 42, Shift+Option+/ emits question mark.
+  [COMM_DOT_QUES] = COMBO(comm_dot_combo, LSA(KC_SLSH)),
   // In Russian Cantor 42, Option+M emits hard sign.
   [M_COMM_HARD] = COMBO(m_comm_combo, LALT(KC_M)),
   // GUI_ENT is Cmd on hold and Enter on tap, so Cmd+Enter can't be typed with it.
