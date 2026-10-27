@@ -50,15 +50,19 @@ combo_t key_combos[COMBO_COUNT] = {
 
 };
 
-#ifdef COMBO_MUST_HOLD_PER_COMBO
-bool get_combo_must_hold(uint16_t combo_index, combo_t *combo) {
+#define COMBO_PRIOR_IDLE_MS 150
+
+static uint16_t last_keypress_time = 0;
+
+#ifdef COMBO_SHOULD_TRIGGER
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     // JK_ESC overlaps with the common Russian bigram "ол" (as in "около"),
-    // so require a brief hold to avoid misfiring while typing fast.
+    // so only fire after a typing pause to avoid misfiring while typing fast.
     switch (combo_index) {
         case JK_ESC:
-            return true;
+            return timer_elapsed(last_keypress_time) > COMBO_PRIOR_IDLE_MS;
     }
-    return false;
+    return true;
 }
 #endif
 
@@ -76,7 +80,7 @@ bool get_combo_must_hold(uint16_t combo_index, combo_t *combo) {
 // For _QWERTY layer
 #define GUI_ENT  GUI_T(KC_ENT)
 #define LOW_TAB  LT(_LOWER, KC_TAB)
-#define MOU_GUI  LT(_MOUSE, KC_LGUI)
+#define MOU_TAB  LT(_MOUSE, KC_TAB)
 #define FUN_GRV  LT(_FUNC, KC_GRV)
 #define AGR_SCLN MT(MOD_RALT, KC_SCLN)
 #define OSM_ALT  OSM(MOD_LALT)
@@ -91,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,KC_LBRC ,
+      MOU_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P    ,KC_LBRC ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
  OSM(MOD_LALT),   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                     KC_H    ,KC_J    ,KC_K    ,KC_L    ,KC_QUOT ,AGR_SCLN,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -115,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_DEL , KC_INS, KC_UNDS, KC_PLUS, KC_PGUP,                      KC_F16 , KC_F17 , KC_F13 , KC_F14 , KC_PIPE,KC_BSLS ,
+      _______, KC_DEL , KC_INS, KC_UNDS, KC_PLUS, KC_PGUP,                      KC_BRID, KC_BRIU, KC_F13, KC_F14 , KC_PIPE,KC_BSLS ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_HOME, KC_END , KC_MINS, KC_EQL , KC_PGDN,                      KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_APP ,_______ ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -129,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______, KC_F1  , KC_F2  , KC_F3   , KC_F4 ,  KC_F5 ,                     KC_F6   , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,_______ ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_F11 , KC_F12 , XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,_______ ,
+      _______, KC_F11 , KC_F12 , XXXXXXX, XXXXXXX, XXXXXXX,                     KC_F15  , KC_F16 , XXXXXXX, XXXXXXX, XXXXXXX,_______ ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,KC_CAPS,S(KC_DEL),C(KC_INS),S(KC_INS),XXXXXXX,                      RM_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, C(G(KC_Q)),XXXXXXX ,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -138,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-// There's no keybinding to activate the mouse layer yet!
+// Hold the top-left Tab key
 [_MOUSE] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, MS_LEFT, MS_UP, MS_DOWN, MS_RGHT, _______,\
@@ -154,6 +158,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // Combo keys are buffered and only reach here once resolved, so this
+    // tracks the last real keypress for combo_should_trigger().
+    if (record->event.pressed) {
+        last_keypress_time = timer_read();
+    }
     return process_record_xcase(keycode, record);
 }
 
@@ -163,13 +172,21 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM_THUMB;
       case LT(_LOWER, KC_TAB):
             return TAPPING_TERM_THUMB;
-      case LT(_MOUSE, KC_LGUI):
-            return TAPPING_TERM_THUMB;
       case LT(_SHORTCUT, OSM_SFT):
             return TAPPING_TERM_THUMB;
       default:
             return TAPPING_TERM;
     }
+}
+
+// MOU_TAB is tap-preferred: fast rolls off Tab never trigger the Mouse layer,
+// it activates only after a real hold. Everything else keeps both options.
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    return keycode != MOU_TAB;
+}
+
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    return keycode != MOU_TAB;
 }
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
